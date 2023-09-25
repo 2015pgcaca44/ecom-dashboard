@@ -7,6 +7,13 @@
   pointer-events: none;
 }
 
+.navbar_wraper a{
+  padding-left: 20px;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  text-decoration: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
