@@ -43,3 +43,9 @@
     transform: rotate(360deg);
   }
 }
+
+table.d {
+  table-layout: auto;
+  width: 95%;  
+  word-break: break-all;
+}

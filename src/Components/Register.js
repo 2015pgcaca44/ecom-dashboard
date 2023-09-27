@@ -1,26 +1,40 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 function Register (){
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [cpass, setCPass] = useState("");
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        if(localStorage.getItem('user-info')){
+            navigate("/add")
+        }
+    },[])
     async function signUp(){
         let item = {name,email,pass,cpass}
-        let result = await fetch("http://127.0.0.1:8000/api/register",{
+        if(pass != cpass){
+            alert("pass should be same");
+            return;
+        }
+        const headers = {
+            'mode':'cors',
+            'Accept':'*/*',
+            'Access-Control-Allow-Origin':'*',
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS',
+            'Access-Control-Allow-Credentials': 'true'
+        }
+        let result = await fetch("api/register",{
             method:'POST',
-            headers:{
-                'mode': 'no-cors',
-                'Access-Control-Allow-Headers' : 'Content-Type',
-                'Access-Control-Allow-Origin': '*',
-                // 'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PATCH',
-                'Content-Type':'application/json',
-                'Accept':'application/json',
-            },
+            headers:headers,
             body:JSON.stringify(item)
         });
         result = await result.json();
         console.log(result);
+        localStorage.setItem("user-info",JSON.stringify(result))
+        navigate("/login")
     }
     return(
         <div>
@@ -69,12 +83,12 @@ function Register (){
                                     </div>
                                 </div>
 
-                                <div className="form-check d-flex justify-content-center mb-5">
+                                {/* <div className="form-check d-flex justify-content-center mb-5">
                                     <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
                                     <label className="form-check-label" for="form2Example3">
                                     I agree all statements in <a href="#!">Terms of service</a>
                                     </label>
-                                </div>
+                                </div> */}
 
                                 <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                     <button type="button" onClick={signUp} className="btn btn-primary btn-lg">Register</button>
