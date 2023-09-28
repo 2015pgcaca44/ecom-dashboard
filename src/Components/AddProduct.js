@@ -71,7 +71,7 @@ function AddProduct (){
                     
                 </Row><br />
 
-                <Button onClick={saveProduct} className="btn btn-primary btn-block mb-4">Place order</Button>
+                <Button onClick={saveProduct} className="btn btn-dark btn-block mb-4">Save Product</Button>
                 </Form.Group>
                 </Form></center>
         </div>

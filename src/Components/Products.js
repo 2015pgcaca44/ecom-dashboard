@@ -67,7 +67,7 @@ function Products (){
                             <td>{item.price}</td>
                             <td>{item.description}</td>
                             <td className="d"><img src={item.image} width={100} /></td>
-                            <td><Link to={"/update"}><Button className="btn-sm btn-dark">edit</Button></Link></td>
+                            <td><Link to={"/update/"+item.id}><Button className="btn-sm btn-dark">edit</Button></Link></td>
                             <td><Button onClick={()=>deleteProduct(item.id)} className="btn-sm btn-dark">delete</Button></td>
                         </tr>
                         )
